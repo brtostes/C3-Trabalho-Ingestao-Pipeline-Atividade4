@@ -1,0 +1,15 @@
+ Container trabalho04-postgres Running 
+ Container trabalho04-postgres Waiting 
+ Container trabalho04-postgres Healthy 
+ Container trabalho-04-ingest-run-097abc4ecdf1 Creating 
+ Container trabalho-04-ingest-run-097abc4ecdf1 Created 
+======================================================================
+EXPORTACAO DAS CAMADAS TRUSTED E DELIVERY PARA PARQUET
+======================================================================
+[OK] trusted.reclamacoes -> /data/trusted/reclamacoes.parquet | linhas_banco=918 | linhas_parquet=918 | bytes=45956
+[OK] trusted.enquadramento -> /data/trusted/enquadramento.parquet | linhas_banco=1474 | linhas_parquet=1474 | bytes=80867
+[OK] trusted.glassdoor -> /data/trusted/glassdoor.parquet | linhas_banco=39 | linhas_parquet=39 | bytes=24832
+[OK] delivery.tabela_final -> /data/delivery/tabela_final.parquet | linhas_banco=918 | linhas_parquet=918 | bytes=67973
+======================================================================
+EXPORTACAO CONCLUIDA COM SUCESSO
+======================================================================

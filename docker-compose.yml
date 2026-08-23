@@ -1,0 +1,88 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: trabalho04-postgres
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "${POSTGRES_HOST_PORT}:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+    restart: unless-stopped
+
+    networks:
+      - atividade4_network
+
+
+  ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+
+    container_name: trabalho04-ingest
+
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - ./data/input:/data/input:ro
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - atividade4_network
+
+
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile.dbt
+
+    working_dir: /usr/app
+
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DBT_PROFILES_DIR: /usr/app
+
+    volumes:
+      - ./dbt:/usr/app
+      - ./data:/data
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - atividade4_network
+
+
+volumes:
+  postgres_data:
+
+
+networks:
+  atividade4_network:
+    driver: bridge

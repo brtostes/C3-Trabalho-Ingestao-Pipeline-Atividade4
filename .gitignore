@@ -1,0 +1,20 @@
+﻿.env
+__pycache__/
+*.pyc
+dbt/logs/
+dbt/target/
+.vscode/
+
+# Arquivos locais/auxiliares
+dbt/.user.yml
+docker-compose_backup.yml
+
+# Evidência substituída por versão limpa
+evidencias/23_export_parquet.txt
+
+# Arquivos locais/auxiliares
+dbt/.user.yml
+docker-compose_backup.yml
+
+# Evidência substituída pela versão limpa
+evidencias/23_export_parquet.txt

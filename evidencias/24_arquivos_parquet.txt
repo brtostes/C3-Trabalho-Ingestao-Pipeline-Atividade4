@@ -1,0 +1,10 @@
+
+Name                  Length LastWriteTime      
+----                  ------ -------------      
+enquadramento.parquet  80867 23/08/2026 18:46:32
+glassdoor.parquet      24832 23/08/2026 18:46:32
+reclamacoes.parquet    45956 23/08/2026 18:46:32
+tabela_final.parquet   67973 23/08/2026 18:46:32
+
+
+

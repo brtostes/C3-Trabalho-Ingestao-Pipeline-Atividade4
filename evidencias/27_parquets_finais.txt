@@ -1,0 +1,10 @@
+
+FullName                                                                               Length LastWriteTime      
+--------                                                                               ------ -------------      
+D:\GitHub\C3-Trabalho-Ingestao-Pipeline\Trabalho-04\data\trusted\enquadramento.parquet  80867 23/08/2026 18:48:05
+D:\GitHub\C3-Trabalho-Ingestao-Pipeline\Trabalho-04\data\trusted\glassdoor.parquet      24832 23/08/2026 18:48:05
+D:\GitHub\C3-Trabalho-Ingestao-Pipeline\Trabalho-04\data\trusted\reclamacoes.parquet    45956 23/08/2026 18:48:05
+D:\GitHub\C3-Trabalho-Ingestao-Pipeline\Trabalho-04\data\delivery\tabela_final.parquet  67973 23/08/2026 18:48:05
+
+
+

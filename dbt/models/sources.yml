@@ -1,0 +1,39 @@
+﻿version: 2
+
+sources:
+  - name: raw
+    schema: raw
+
+    quoting:
+      identifier: true
+
+    tables:
+      - name: t2021_tri_01
+        identifier: 2021_tri_01
+
+      - name: t2021_tri_02
+        identifier: 2021_tri_02
+
+      - name: t2021_tri_03
+        identifier: 2021_tri_03
+
+      - name: t2021_tri_04
+        identifier: 2021_tri_04
+
+      - name: t2022_tri_01
+        identifier: 2022_tri_01
+
+      - name: t2022_tri_03
+        identifier: 2022_tri_03
+
+      - name: t2022_tri_04
+        identifier: 2022_tri_04
+
+      - name: enquadramento
+        identifier: enquadramentoinicia_v2
+
+      - name: glassdoor_match
+        identifier: glassdoor_consolidado_join_match_v2
+
+      - name: glassdoor_match_less
+        identifier: glassdoor_consolidado_join_match_less_v2

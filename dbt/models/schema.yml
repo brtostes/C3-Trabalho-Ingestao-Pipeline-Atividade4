@@ -1,0 +1,102 @@
+version: 2
+
+models:
+
+  - name: reclamacoes
+    description: "Base consolidada e tratada de reclamações na camada Trusted."
+
+    columns:
+
+      - name: ano
+        data_tests:
+          - not_null
+
+      - name: trimestre
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+
+      - name: instituicao_financeira
+        data_tests:
+          - not_null
+
+      - name: _source_file
+        data_tests:
+          - not_null
+
+      - name: _source_row_number
+        data_tests:
+          - not_null
+
+
+  - name: enquadramento
+    description: "Enquadramento das instituições financeiras com CNPJ-base normalizado."
+
+    columns:
+
+      - name: segmento
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['S1', 'S2', 'S3', 'S4', 'S5']
+
+      - name: cnpj_if
+        data_tests:
+          - not_null
+
+      - name: nome_conglomerado
+        data_tests:
+          - not_null
+
+
+  - name: glassdoor
+    description: "Dados Glassdoor consolidados e padronizados."
+
+    columns:
+
+      - name: employer_name
+        data_tests:
+          - not_null
+
+      - name: tipo_match
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['match', 'match_less']
+
+      - name: match_percent
+        data_tests:
+          - not_null
+
+
+  - name: tabela_final
+    description: "Tabela Delivery final, enriquecida e preservando a granularidade das reclamações."
+
+    columns:
+
+      - name: ano
+        data_tests:
+          - not_null
+
+      - name: trimestre
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+
+      - name: instituicao_financeira
+        data_tests:
+          - not_null
+
+      - name: _source_file
+        data_tests:
+          - not_null
+
+      - name: _source_row_number
+        data_tests:
+          - not_null
