@@ -1,0 +1,18 @@
+ Container trabalho04-postgres Running 
+ Container trabalho04-postgres Waiting 
+ Container trabalho04-postgres Healthy 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-172c0548a27a Creating 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-172c0548a27a Created 
+[0m19:30:18  Running with dbt=1.12.3
+[0m19:30:18  Registered adapter: postgres=1.11.0
+[0m19:30:19  Found 10 models, 29 data tests, 10 sources, 479 macros
+atividade4_dbt.trusted.enquadramento
+atividade4_dbt.trusted.enquadramento_aliases
+atividade4_dbt.trusted.enquadramento_base
+atividade4_dbt.trusted.glassdoor
+atividade4_dbt.intermediate.int_glassdoor_normalizado
+atividade4_dbt.intermediate.int_glassdoor_por_cnpj
+atividade4_dbt.intermediate.int_glassdoor_por_nome
+atividade4_dbt.intermediate.int_reclamacoes_normalizadas
+atividade4_dbt.trusted.reclamacoes
+atividade4_dbt.delivery.tabela_final

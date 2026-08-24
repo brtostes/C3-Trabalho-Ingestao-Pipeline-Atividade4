@@ -1,0 +1,11 @@
+﻿=== RECURSOS DBT UTILIZADOS NA REFATORACAO ===
+
+=== MACROS ===
+generate_schema_name.sql
+normalizar_nome.sql
+
+=== MODELOS INTERMEDIATE ===
+int_glassdoor_normalizado.sql
+int_glassdoor_por_cnpj.sql
+int_glassdoor_por_nome.sql
+int_reclamacoes_normalizadas.sql

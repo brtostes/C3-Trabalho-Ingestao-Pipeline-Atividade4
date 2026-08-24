@@ -4,30 +4,12 @@ select distinct
     e.segmento,
     e.nome_conglomerado,
 
-    trim(
-        regexp_replace(
-            regexp_replace(
-                translate(
-                    upper(
-                        regexp_replace(
-                            trim(e.nome_conglomerado),
-                            '[[:space:]]*-[[:space:]]*PRUDENCIAL[[:space:]]*$',
-                            '',
-                            'i'
-                        )
-                    ),
-                    'ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ',
-                    'AAAAAEEEEIIIIOOOOOUUUUC'
-                ),
-                '[^A-Z0-9]+',
-                ' ',
-                'g'
-            ),
-            '[[:space:]]+',
-            ' ',
-            'g'
+    {{
+        normalizar_nome(
+            'e.nome_conglomerado',
+            '[[:space:]]*-[[:space:]]*PRUDENCIAL[[:space:]]*$'
         )
-    ) as nome_normalizado
+    }} as nome_normalizado
 
 from {{ ref('enquadramento_base') }} e
 

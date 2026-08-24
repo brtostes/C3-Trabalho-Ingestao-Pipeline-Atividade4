@@ -20,6 +20,9 @@ models:
       +materialized: table
       +schema: trusted
 
+    intermediate:
+      +materialized: ephemeral
+
     delivery:
       +materialized: table
       +schema: delivery
