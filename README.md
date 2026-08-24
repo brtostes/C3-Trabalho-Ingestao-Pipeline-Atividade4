@@ -43,6 +43,7 @@ scripts/
   ingest_raw.py
   text_utils.py
   export_parquet.py
+  finalizar_artefatos.ps1
 
 dbt/
   macros/
@@ -132,6 +133,27 @@ A pasta `apresentacao/` contém:
 - `Apresentacao_Tarefa4_Engenharia_Dados_atualizada.md`, com o conteúdo integral da apresentação revisada e alinhada ao estado final do pipeline.
 
 A versão PPTX revisada também foi produzida durante a revisão do trabalho e deve substituir o binário anterior quando a exportação binária for feita pelo ambiente local.
+
+## Finalização dos artefatos binários
+
+O script `scripts/finalizar_artefatos.ps1` automatiza a última sincronização da entrega. Ele:
+
+1. valida que o PPTX informado possui 15 slides;
+2. sobe o PostgreSQL e reconstrói as imagens Docker;
+3. reexecuta a ingestão RAW;
+4. executa `dbt build`;
+5. reexporta os quatro arquivos Parquet;
+6. valida as cardinalidades 918 / 1.459 / 39 / 918;
+7. substitui a apresentação;
+8. registra a evidência `39_finalizacao_artefatos_binarios.txt`;
+9. faz `git commit` e `git push` dos binários finais.
+
+No PowerShell, a partir da raiz do repositório:
+
+```powershell
+.\scripts\finalizar_artefatos.ps1 `
+  -PptxPath "C:\caminho\Apresentacao_Tarefa4_Engenharia_Dados_GitHub_final.pptx"
+```
 
 ## Repositório
 
