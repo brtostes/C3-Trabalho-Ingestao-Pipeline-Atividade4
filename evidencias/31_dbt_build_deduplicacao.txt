@@ -1,0 +1,83 @@
+ Container trabalho04-postgres Running 
+ Container trabalho04-postgres Waiting 
+ Container trabalho04-postgres Healthy 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-f317daf08a4a Creating 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-f317daf08a4a Created 
+[0m17:43:18  Running with dbt=1.12.3
+[0m17:43:18  Registered adapter: postgres=1.11.0
+[0m17:43:19  Found 6 models, 28 data tests, 10 sources, 478 macros
+[0m17:43:19  
+[0m17:43:19  Concurrency: 4 threads (target='dev')
+[0m17:43:19  
+[0m17:43:19  1 of 33 START sql table model trusted.glassdoor ................................ [RUN]
+[0m17:43:19  2 of 33 START sql table model trusted.reclamacoes .............................. [RUN]
+[0m17:43:19  3 of 33 START sql table model trusted.enquadramento ............................ [RUN]
+[0m17:43:19  4 of 33 START sql table model trusted.enquadramento_aliases .................... [RUN]
+[0m17:43:19  3 of 33 OK created sql table model trusted.enquadramento ....................... [[32mSELECT 1459[0m in 0.28s]
+[0m17:43:19  5 of 33 START test accepted_values_enquadramento_segmento__S1__S2__S3__S4__S5 .. [RUN]
+[0m17:43:19  4 of 33 OK created sql table model trusted.enquadramento_aliases ............... [[32mSELECT 1474[0m in 0.26s]
+[0m17:43:19  6 of 33 START test not_null_enquadramento_cnpj_if .............................. [RUN]
+[0m17:43:19  1 of 33 OK created sql table model trusted.glassdoor ........................... [[32mSELECT 39[0m in 0.50s]
+[0m17:43:19  6 of 33 PASS not_null_enquadramento_cnpj_if .................................... [[32mPASS[0m in 0.15s]
+[0m17:43:19  5 of 33 PASS accepted_values_enquadramento_segmento__S1__S2__S3__S4__S5 ........ [[32mPASS[0m in 0.18s]
+[0m17:43:19  7 of 33 START test not_null_enquadramento_nome_conglomerado .................... [RUN]
+[0m17:43:19  8 of 33 START test not_null_enquadramento_segmento ............................. [RUN]
+[0m17:43:19  2 of 33 OK created sql table model trusted.reclamacoes ......................... [[32mSELECT 918[0m in 0.53s]
+[0m17:43:19  9 of 33 START test unique_enquadramento_cnpj_if ................................ [RUN]
+[0m17:43:19  10 of 33 START test enquadramento_segmento_consistente ......................... [RUN]
+[0m17:43:19  8 of 33 PASS not_null_enquadramento_segmento ................................... [[32mPASS[0m in 0.07s]
+[0m17:43:19  7 of 33 PASS not_null_enquadramento_nome_conglomerado .......................... [[32mPASS[0m in 0.07s]
+[0m17:43:19  9 of 33 PASS unique_enquadramento_cnpj_if ...................................... [[32mPASS[0m in 0.06s]
+[0m17:43:19  11 of 33 START test not_null_enquadramento_aliases_nome_conglomerado ........... [RUN]
+[0m17:43:19  12 of 33 START test not_null_enquadramento_aliases_nome_normalizado ............ [RUN]
+[0m17:43:19  13 of 33 START test accepted_values_glassdoor_tipo_match__match__match_less .... [RUN]
+[0m17:43:19  10 of 33 PASS enquadramento_segmento_consistente ............................... [[32mPASS[0m in 0.07s]
+[0m17:43:19  14 of 33 START test glassdoor_match_percent .................................... [RUN]
+[0m17:43:19  12 of 33 PASS not_null_enquadramento_aliases_nome_normalizado .................. [[32mPASS[0m in 0.07s]
+[0m17:43:19  13 of 33 PASS accepted_values_glassdoor_tipo_match__match__match_less .......... [[32mPASS[0m in 0.07s]
+[0m17:43:19  11 of 33 PASS not_null_enquadramento_aliases_nome_conglomerado ................. [[32mPASS[0m in 0.08s]
+[0m17:43:19  15 of 33 START test not_null_glassdoor_employer_name ........................... [RUN]
+[0m17:43:19  16 of 33 START test not_null_glassdoor_match_percent ........................... [RUN]
+[0m17:43:19  17 of 33 START test not_null_glassdoor_tipo_match .............................. [RUN]
+[0m17:43:19  14 of 33 PASS glassdoor_match_percent .......................................... [[32mPASS[0m in 0.07s]
+[0m17:43:19  18 of 33 START test accepted_values_reclamacoes_trimestre__1__2__3__4 .......... [RUN]
+[0m17:43:19  15 of 33 PASS not_null_glassdoor_employer_name ................................. [[32mPASS[0m in 0.07s]
+[0m17:43:19  16 of 33 PASS not_null_glassdoor_match_percent ................................. [[32mPASS[0m in 0.07s]
+[0m17:43:19  17 of 33 PASS not_null_glassdoor_tipo_match .................................... [[32mPASS[0m in 0.07s]
+[0m17:43:19  19 of 33 START test not_null_reclamacoes__source_file .......................... [RUN]
+[0m17:43:19  20 of 33 START test not_null_reclamacoes__source_row_number .................... [RUN]
+[0m17:43:19  21 of 33 START test not_null_reclamacoes_ano ................................... [RUN]
+[0m17:43:19  18 of 33 PASS accepted_values_reclamacoes_trimestre__1__2__3__4 ................ [[32mPASS[0m in 0.07s]
+[0m17:43:19  22 of 33 START test not_null_reclamacoes_instituicao_financeira ................ [RUN]
+[0m17:43:20  20 of 33 PASS not_null_reclamacoes__source_row_number .......................... [[32mPASS[0m in 0.08s]
+[0m17:43:20  19 of 33 PASS not_null_reclamacoes__source_file ................................ [[32mPASS[0m in 0.09s]
+[0m17:43:20  21 of 33 PASS not_null_reclamacoes_ano ......................................... [[32mPASS[0m in 0.08s]
+[0m17:43:20  23 of 33 START test not_null_reclamacoes_trimestre ............................. [RUN]
+[0m17:43:20  22 of 33 PASS not_null_reclamacoes_instituicao_financeira ...................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  23 of 33 PASS not_null_reclamacoes_trimestre ................................... [[32mPASS[0m in 0.05s]
+[0m17:43:20  24 of 33 START sql table model delivery.tabela_final ........................... [RUN]
+[0m17:43:20  24 of 33 OK created sql table model delivery.tabela_final ...................... [[32mSELECT 918[0m in 0.09s]
+[0m17:43:20  25 of 33 START test accepted_values_tabela_final_trimestre__1__2__3__4 ......... [RUN]
+[0m17:43:20  26 of 33 START test delivery_cardinalidade ..................................... [RUN]
+[0m17:43:20  27 of 33 START test delivery_coerencia_glassdoor ............................... [RUN]
+[0m17:43:20  28 of 33 START test delivery_granularidade ..................................... [RUN]
+[0m17:43:20  27 of 33 PASS delivery_coerencia_glassdoor ..................................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  28 of 33 PASS delivery_granularidade ........................................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  26 of 33 PASS delivery_cardinalidade ........................................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  25 of 33 PASS accepted_values_tabela_final_trimestre__1__2__3__4 ............... [[32mPASS[0m in 0.07s]
+[0m17:43:20  29 of 33 START test not_null_tabela_final__source_file ......................... [RUN]
+[0m17:43:20  30 of 33 START test not_null_tabela_final__source_row_number ................... [RUN]
+[0m17:43:20  31 of 33 START test not_null_tabela_final_ano .................................. [RUN]
+[0m17:43:20  32 of 33 START test not_null_tabela_final_instituicao_financeira ............... [RUN]
+[0m17:43:20  29 of 33 PASS not_null_tabela_final__source_file ............................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  30 of 33 PASS not_null_tabela_final__source_row_number ......................... [[32mPASS[0m in 0.07s]
+[0m17:43:20  31 of 33 PASS not_null_tabela_final_ano ........................................ [[32mPASS[0m in 0.07s]
+[0m17:43:20  32 of 33 PASS not_null_tabela_final_instituicao_financeira ..................... [[32mPASS[0m in 0.06s]
+[0m17:43:20  33 of 33 START test not_null_tabela_final_trimestre ............................ [RUN]
+[0m17:43:20  33 of 33 PASS not_null_tabela_final_trimestre .................................. [[32mPASS[0m in 0.03s]
+[0m17:43:20  
+[0m17:43:20  Finished running 5 table models, 28 data tests in 0 hours 0 minutes and 1.37 seconds (1.37s).
+[0m17:43:20  
+[0m17:43:20  [32mCompleted successfully[0m
+[0m17:43:20  
+[0m17:43:20  Done. PASS=33 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=33

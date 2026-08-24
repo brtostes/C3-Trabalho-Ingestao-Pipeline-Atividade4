@@ -44,10 +44,31 @@ models:
                 values: ['S1', 'S2', 'S3', 'S4', 'S5']
 
       - name: cnpj_if
+        description: "CNPJ-base normalizado e único após o processo de deduplicação."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: nome_conglomerado
         data_tests:
           - not_null
 
+  - name: enquadramento_aliases
+    description: "Nomes alternativos associados aos CNPJs, preservados para operações de matching."
+
+    columns:
+
+      - name: cnpj_if
+        description: "CNPJ-base normalizado e único após o processo de deduplicação."
+        data_test:
+          - not_null
+          - unique
+
       - name: nome_conglomerado
+        data_tests:
+          - not_null
+
+      - name: nome_normalizado
         data_tests:
           - not_null
 

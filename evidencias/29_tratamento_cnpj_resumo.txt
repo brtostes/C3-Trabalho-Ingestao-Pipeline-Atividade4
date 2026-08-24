@@ -1,0 +1,5 @@
+﻿ total_registros | cnpjs_distintos | originalmente_duplicados | max_registros_por_cnpj 
+-----------------+-----------------+--------------------------+------------------------
+            1459 |            1459 |                       15 |                      2
+(1 row)
+

@@ -1,0 +1,19 @@
+﻿ cnpj_if  | segmento |          nome_canonico           | quantidade_registros_cnpj |                            nomes_associados                            |  regra_deduplicacao   
+----------+----------+----------------------------------+---------------------------+------------------------------------------------------------------------+-----------------------
+ 00000000 | S1       | BANCO DO BRASIL - PRUDENCIAL     |                         2 | BANCO DO BRASIL - PRUDENCIAL | BANCO DO BRASIL S/A                     | PRIORIDADE_PRUDENCIAL
+ 00000208 | S3       | BRB - PRUDENCIAL                 |                         2 | BRB BANCO DE BRASILIA S/A | BRB - PRUDENCIAL                           | PRIORIDADE_PRUDENCIAL
+ 07450604 | S3       | CCB - PRUDENCIAL                 |                         2 | CCB - PRUDENCIAL | CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/  | PRIORIDADE_PRUDENCIAL
+ 17184037 | S3       | MERCANTIL DO BRASIL - PRUDENCIAL |                         2 | BANCO MERCANTIL DO BRASIL S.A | MERCANTIL DO BRASIL - PRUDENCIAL       | PRIORIDADE_PRUDENCIAL
+ 28127603 | S3       | BANESTES - PRUDENCIAL            |                         2 | BANESTES - PRUDENCIAL | BANESTES S/A BANCO DO ESTADO DO ESPIRITO SANTO | PRIORIDADE_PRUDENCIAL
+ 58160789 | S2       | SAFRA - PRUDENCIAL               |                         2 | BANCO SAFRA S/A | SAFRA - PRUDENCIAL                                   | PRIORIDADE_PRUDENCIAL
+ 58616418 | S3       | BANCO FIBRA S.A. - PRUDENCIAL    |                         2 | BANCO FIBRA SA | BANCO FIBRA S.A. - PRUDENCIAL                         | PRIORIDADE_PRUDENCIAL
+ 59109165 | S3       | VOLKSWAGEN - PRUDENCIAL          |                         2 | BANCO VOLKSWAGEN | VOLKSWAGEN - PRUDENCIAL                             | PRIORIDADE_PRUDENCIAL
+ 59274605 | S3       | GMAC - PRUDENCIAL                |                         2 | BANCO GMAC S.A. | GMAC - PRUDENCIAL                                    | PRIORIDADE_PRUDENCIAL
+ 59285411 | S3       | PAN                              |                         2 | BANCO PAN S.A | PAN                                                    | DESEMPATE_ORDEM_FONTE
+ 59588111 | S2       | VOTORANTIM - PRUDENCIAL          |                         2 | BANCO VOTORANTIM S.A. | VOTORANTIM - PRUDENCIAL                        | PRIORIDADE_PRUDENCIAL
+ 60872504 | S1       | ITAU - PRUDENCIAL                |                         2 | ITAU - PRUDENCIAL | ITAU UNIBANCO HOLDING S.A.                         | PRIORIDADE_PRUDENCIAL
+ 90400888 | S1       | SANTANDER - PRUDENCIAL           |                         2 | BANCO SANTANDER (BRASIL) S/A | SANTANDER - PRUDENCIAL                  | PRIORIDADE_PRUDENCIAL
+ 92702067 | S2       | BANRISUL - PRUDENCIAL            |                         2 | BANCO DO ESTADO DO RIO GRANDE DO SUL SA | BANRISUL - PRUDENCIAL        | PRIORIDADE_PRUDENCIAL
+ 92894922 | S3       | ORIGINAL - PRUDENCIAL            |                         2 | BANCO ORIGINAL S/A | ORIGINAL - PRUDENCIAL                             | PRIORIDADE_PRUDENCIAL
+(15 rows)
+

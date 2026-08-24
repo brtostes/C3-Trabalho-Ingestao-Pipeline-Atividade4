@@ -3,96 +3,46 @@ with
 /*
 ==============================================================
 1. ENQUADRAMENTO CANÔNICO
-Uma única linha de apresentação para cada CNPJ.
+A deduplicação dos CNPJs é realizada previamente no modelo
+trusted.enquadramento.
+
+Neste ponto, cada CNPJ possui apenas um registro canônico.
 ==============================================================
 */
-
-enquadramento_ranqueado as (
-
-    select
-        e.*,
-
-        row_number() over (
-
-            partition by e.cnpj_if
-
-            order by
-
-                case
-                    when upper(e.nome_conglomerado)
-                         like '%- PRUDENCIAL'
-                    then 1
-                    else 2
-                end,
-
-                e._source_row_number
-
-        ) as rn
-
-    from {{ ref('enquadramento') }} e
-
-    where e.cnpj_if is not null
-),
 
 enquadramento_canonico as (
 
     select
+
         cnpj_if,
         segmento,
         nome_conglomerado
 
-    from enquadramento_ranqueado
+    from {{ ref('enquadramento') }}
 
-    where rn = 1
 ),
-
 
 /*
 ==============================================================
 2. ALIASES DO ENQUADRAMENTO
-Todos os nomes são mantidos para aumentar a capacidade de
-ligação com o Glassdoor.
+Os nomes alternativos dos CNPJs são preservados em modelo
+específico para aumentar a capacidade de associação com
+os registros do Glassdoor.
 ==============================================================
 */
 
 enquadramento_aliases as (
 
-    select distinct
+    select
 
-        e.cnpj_if,
-        e.segmento,
+        cnpj_if,
+        segmento,
+        nome_conglomerado,
+        nome_normalizado
 
-        trim(
-            regexp_replace(
-                regexp_replace(
-                    translate(
-                        upper(
-                            regexp_replace(
-                                trim(e.nome_conglomerado),
-                                '[[:space:]]*-[[:space:]]*PRUDENCIAL[[:space:]]*$',
-                                '',
-                                'i'
-                            )
-                        ),
-                        'ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ',
-                        'AAAAAEEEEIIIIOOOOOUUUUC'
-                    ),
-                    '[^A-Z0-9]+',
-                    ' ',
-                    'g'
-                ),
-                '[[:space:]]+',
-                ' ',
-                'g'
-            )
-        ) as nome_normalizado
+    from {{ ref('enquadramento_aliases') }}
 
-    from {{ ref('enquadramento') }} e
-
-    where e.cnpj_if is not null
-      and e.nome_conglomerado is not null
 ),
-
 
 /*
 ==============================================================
