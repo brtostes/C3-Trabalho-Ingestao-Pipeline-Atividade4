@@ -1,11 +1,21 @@
-﻿=== RECURSOS DBT UTILIZADOS NA REFATORACAO ===
+RECURSOS DBT UTILIZADOS APÓS REFATORAÇÃO
 
 === MACROS ===
 generate_schema_name.sql
 normalizar_nome.sql
 
-=== MODELOS INTERMEDIATE ===
+=== MODELOS INTERMEDIATE (EPHEMERAL) ===
 int_glassdoor_normalizado.sql
 int_glassdoor_por_cnpj.sql
 int_glassdoor_por_nome.sql
 int_reclamacoes_normalizadas.sql
+
+=== OUTROS RECURSOS NATIVOS DBT ===
+- source() para leitura da camada RAW
+- ref() para dependências entre modelos
+- materialização ephemeral para transformações intermediárias
+- testes declarativos em schema.yml
+- testes singulares em dbt/tests
+- DAG de dependências reconstruída pelo dbt
+
+A macro `normalizar_nome` centraliza regras de padronização textual antes repetidas em diferentes consultas SQL.
