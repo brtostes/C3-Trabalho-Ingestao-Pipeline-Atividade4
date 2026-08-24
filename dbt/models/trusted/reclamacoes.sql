@@ -123,24 +123,19 @@ with reclamacoes_unificadas as (
 
 
         /*
-        As três colunas seguintes possuem o caractere
-        de controle U+0096 no cabeçalho da fonte.
+        Dados de clientes.
 
-        Para manter a RAW intacta, o nome real é recuperado
-        do catálogo do PostgreSQL pela posição ordinal.
+        Os caracteres Unicode problemáticos dos cabeçalhos
+        são normalizados tecnicamente durante a ingestão.
+        Por isso, o dbt pode referenciar diretamente os
+        nomes padronizados persistidos na camada RAW.
         */
 
         cast(
             nullif(
                 regexp_replace(
                     trim(
-                        to_jsonb(r) ->> (
-                            select c.column_name
-                            from information_schema.columns c
-                            where c.table_schema = 'raw'
-                              and c.table_name = '{{ t["table_name"] }}'
-                              and c.ordinal_position = 12
-                        )
+                        r."Quantidade total de clientes - CCS e SCR"
                     ),
                     '[^0-9]',
                     '',
@@ -155,13 +150,7 @@ with reclamacoes_unificadas as (
             nullif(
                 regexp_replace(
                     trim(
-                        to_jsonb(r) ->> (
-                            select c.column_name
-                            from information_schema.columns c
-                            where c.table_schema = 'raw'
-                              and c.table_name = '{{ t["table_name"] }}'
-                              and c.ordinal_position = 13
-                        )
+                        r."Quantidade de clientes - CCS"
                     ),
                     '[^0-9]',
                     '',
@@ -176,13 +165,7 @@ with reclamacoes_unificadas as (
             nullif(
                 regexp_replace(
                     trim(
-                        to_jsonb(r) ->> (
-                            select c.column_name
-                            from information_schema.columns c
-                            where c.table_schema = 'raw'
-                              and c.table_name = '{{ t["table_name"] }}'
-                              and c.ordinal_position = 14
-                        )
+                        r."Quantidade de clientes - SCR"
                     ),
                     '[^0-9]',
                     '',

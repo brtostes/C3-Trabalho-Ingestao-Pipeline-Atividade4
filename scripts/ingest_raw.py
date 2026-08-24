@@ -1,10 +1,12 @@
-﻿from pathlib import Path
+from pathlib import Path
 from datetime import datetime, timezone
 import os
 import re
 
 import pandas as pd
 from sqlalchemy import create_engine, text
+
+from text_utils import normalize_dataframe_columns
 
 
 INPUT_DIR = Path("/data/input")
@@ -19,16 +21,20 @@ DB_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 def normalize_table_name(filename: str) -> str:
     """
     Converte apenas o nome físico do arquivo em um identificador
-    compatível com PostgreSQL. Os dados internos não são transformados.
+    compatível com PostgreSQL.
+
+    Os dados internos não são transformados.
     """
     name = Path(filename).stem.lower()
     name = re.sub(r"[^a-z0-9]+", "_", name)
+
     return name.strip("_")
 
 
 def read_file(path: Path) -> pd.DataFrame:
     """
-    Realiza apenas a interpretação física correta dos arquivos de origem.
+    Realiza apenas a interpretação física correta dos arquivos
+    de origem.
 
     Não são aplicadas transformações de negócio nesta etapa.
     """
@@ -55,8 +61,18 @@ def read_file(path: Path) -> pd.DataFrame:
             keep_default_na=False
         )
 
-    # Demais arquivos CSV
-    encodings = ["utf-8-sig", "utf-8", "latin-1"]
+    # Demais arquivos CSV.
+    #
+    # O cp1252 é testado antes do latin-1 porque o byte 0x96,
+    # quando presente em arquivos Windows-1252, representa
+    # um travessão. Interpretá-lo diretamente como latin-1
+    # pode gerar o caractere de controle U+0096.
+    encodings = [
+        "utf-8-sig",
+        "utf-8",
+        "cp1252",
+        "latin-1",
+    ]
 
     last_error = None
 
@@ -87,7 +103,9 @@ def main():
     print("=" * 70)
 
     if not DB_PASSWORD:
-        raise RuntimeError("Variável POSTGRES_PASSWORD não definida.")
+        raise RuntimeError(
+            "Variável POSTGRES_PASSWORD não definida."
+        )
 
     connection_url = (
         f"postgresql+psycopg://{DB_USER}:{DB_PASSWORD}"
@@ -131,22 +149,48 @@ def main():
         print(f"[{index}/{len(files)}] Arquivo: {path.name}")
         print(f"        Tabela RAW: raw.{table_name}")
 
+        #
+        # 1. Leitura física do arquivo.
+        #
         df = read_file(path)
 
+        #
+        # 2. Quantidades originais para auditoria.
+        #
         original_rows = len(df)
         original_columns = len(df.columns)
 
         #
-        # Metadados técnicos de rastreabilidade.
+        # 3. Normalização técnica dos cabeçalhos Unicode.
+        #
+        # Trata U+0096 e variantes de hífen/travessão
+        # por meio da função reutilizável implementada
+        # em text_utils.py.
+        #
+        df = normalize_dataframe_columns(df)
+
+        #
+        # 4. Metadados técnicos de rastreabilidade.
         # Não representam transformação de negócio.
         #
         df["_source_file"] = path.name
-        df["_source_row_number"] = range(1, len(df) + 1)
-        df["_ingested_at_utc"] = datetime.now(timezone.utc)
+        df["_source_row_number"] = range(
+            1,
+            len(df) + 1
+        )
+        df["_ingested_at_utc"] = datetime.now(
+            timezone.utc
+        )
 
         print(f"        Linhas: {original_rows}")
-        print(f"        Colunas de origem: {original_columns}")
+        print(
+            f"        Colunas de origem: "
+            f"{original_columns}"
+        )
 
+        #
+        # 5. Persistência na camada RAW.
+        #
         df.to_sql(
             name=table_name,
             con=engine,
@@ -158,7 +202,10 @@ def main():
 
         total_rows += original_rows
 
-        print("        Status: CARREGADO COM SUCESSO")
+        print(
+            "        Status: "
+            "CARREGADO COM SUCESSO"
+        )
 
     print("\n" + "=" * 70)
     print("RESUMO DA INGESTÃO")

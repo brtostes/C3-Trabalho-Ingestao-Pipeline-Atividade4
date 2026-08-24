@@ -1,0 +1,4 @@
+﻿ table_name | ordinal_position | column_name 
+------------+------------------+-------------
+(0 rows)
+

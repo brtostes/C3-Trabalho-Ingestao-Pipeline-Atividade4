@@ -1,0 +1,7 @@
+﻿ ordinal_position |               column_name                
+------------------+------------------------------------------
+               12 | Quantidade total de clientes - CCS e SCR
+               13 | Quantidade de clientes - CCS
+               14 | Quantidade de clientes - SCR
+(3 rows)
+
