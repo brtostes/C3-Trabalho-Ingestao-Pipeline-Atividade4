@@ -59,10 +59,9 @@ models:
     columns:
 
       - name: cnpj_if
-        description: "CNPJ-base normalizado e único após o processo de deduplicação."
-        data_test:
+        description: "CNPJ-base associado aos nomes alternativos; pode se repetir entre aliases."
+        data_tests:
           - not_null
-          - unique
 
       - name: nome_conglomerado
         data_tests:
