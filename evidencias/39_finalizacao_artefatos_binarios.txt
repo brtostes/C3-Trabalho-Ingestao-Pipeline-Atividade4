@@ -1,0 +1,15 @@
+﻿FINALIZAÃ‡ÃƒO DOS ARTEFATOS BINÃRIOS
+Data: 2026-08-24 17:34:53 -03:00
+
+PPTX:
+- apresentacao/Apresentacao_Tarefa4_Engenharia_Dados.pptx
+- 15 slides validados
+
+PARQUET:
+- trusted.reclamacoes: 918 linhas
+- trusted.enquadramento: 1459 linhas canÃ´nicas
+- trusted.glassdoor: 39 linhas
+- delivery.tabela_final: 918 linhas
+
+DBT:
+- dbt build executado com sucesso antes da exportaÃ§Ã£o
