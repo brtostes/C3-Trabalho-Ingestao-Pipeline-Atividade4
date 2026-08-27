@@ -49,14 +49,25 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # 5. Gera a documentacao e salva uma evidencia textual.
+# O comando e executado por cmd.exe porque o Docker Compose pode escrever
+# mensagens informativas no stderr mesmo quando termina com codigo 0.
+# No Windows PowerShell, redirecionar stderr diretamente para o pipeline
+# pode transformar essas mensagens em NativeCommandError quando
+# $ErrorActionPreference = 'Stop'.
 Write-Host "`n[5/6] Executando dbt docs generate..."
 $evidenciaDocs = Join-Path $PSScriptRoot "..\evidencias\40_dbt_docs_generate.txt"
+$evidenciaDocs = [System.IO.Path]::GetFullPath($evidenciaDocs)
 
-docker compose run --rm dbt dbt docs generate 2>&1 |
-    Tee-Object -FilePath $evidenciaDocs
+$docsCommand = "docker compose run --rm dbt dbt docs generate > `"$evidenciaDocs`" 2>&1"
+cmd.exe /d /c $docsCommand
+$docsExitCode = $LASTEXITCODE
 
-if ($LASTEXITCODE -ne 0) {
-    throw "dbt docs generate apresentou erro."
+if (Test-Path $evidenciaDocs) {
+    Get-Content $evidenciaDocs
+}
+
+if ($docsExitCode -ne 0) {
+    throw "dbt docs generate apresentou erro. Consulte $evidenciaDocs."
 }
 
 # 6. Registra os arquivos gerados no target como evidencia.
