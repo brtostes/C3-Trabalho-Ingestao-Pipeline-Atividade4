@@ -117,50 +117,55 @@ docker compose run --rm dbt dbt build
 
 ## dbt Docs — documentação e linhagem
 
-O projeto inclui o procedimento para geração da documentação automática do dbt. O comando central é:
+A geração da documentação automática do dbt foi executada e validada com sucesso.
+
+Comando central:
 
 ```bash
 docker compose run --rm dbt dbt docs generate
 ```
 
-Esse comando produz, em `dbt/target/`, artefatos como `index.html`, `manifest.json` e `catalog.json`. A pasta `dbt/target/` é gerada automaticamente e permanece no `.gitignore`; por isso, não é versionada.
+Resultado observado na execução:
 
-Para facilitar a execução no Windows, foi criado o script:
+```text
+Running with dbt=1.12.3
+Registered adapter: postgres=1.11.0
+Found 10 models, 29 data tests, 10 sources, 479 macros
+Building catalog
+Catalog written to /usr/app/target/catalog.json
+```
+
+A documentação foi servida localmente em:
+
+```text
+http://localhost:8080
+```
+
+Foram confirmadas respostas HTTP 200 para a página principal, `manifest.json` e `catalog.json`. O encerramento do servidor com `Ctrl+C` gera `KeyboardInterrupt`, o que corresponde ao término manual normal do processo `dbt docs serve`.
+
+O projeto inclui o script:
 
 ```text
 scripts/gerar_dbt_docs.ps1
 ```
 
-Ele verifica o Docker, inicia o PostgreSQL, aguarda o healthcheck, executa `dbt build`, gera o dbt Docs e cria as evidências:
+Ele verifica o Docker, inicia o PostgreSQL, aguarda o healthcheck, executa `dbt build`, gera o dbt Docs, registra evidências e, opcionalmente, inicia o servidor local.
 
-```text
-evidencias/40_dbt_docs_generate.txt
-evidencias/41_dbt_docs_arquivos_gerados.txt
-```
-
-Para apenas gerar a documentação:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-.\scripts\gerar_dbt_docs.ps1
-```
-
-Para gerar e abrir o servidor local da documentação:
+Para gerar e servir a documentação:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 .\scripts\gerar_dbt_docs.ps1 -Serve
 ```
 
-Depois, acessar no navegador:
+O **Lineage Graph** permite visualizar as dependências declaradas por `source()` e `ref()`, evidenciando o fluxo desde as fontes RAW, passando pelos modelos Trusted e Intermediate, até `delivery.tabela_final`.
+
+A pasta `dbt/target/` permanece no `.gitignore` porque contém artefatos gerados automaticamente. As evidências versionadas da execução são:
 
 ```text
-http://localhost:8080
+evidencias/40_dbt_docs_generate.txt
+evidencias/41_dbt_docs_arquivos_gerados.txt
 ```
-
-O **Lineage Graph** permite visualizar as dependências declaradas por `source()` e `ref()`, evidenciando o fluxo dos dados desde as fontes RAW, passando pelos modelos Trusted e Intermediate, até `delivery.tabela_final`.
-
-> Observação: a inclusão deste procedimento no repositório não substitui a execução local. As evidências 40 e 41 devem ser geradas no ambiente em que o Docker e o PostgreSQL estejam efetivamente em execução.
 
 ## Exportação Parquet
 
@@ -175,7 +180,7 @@ docker compose run --rm \
 
 ## Qualidade e evidências
 
-O projeto inclui testes `not_null`, `accepted_values`, `unique` e testes singulares de cardinalidade, granularidade, coerência Glassdoor, faixa de `match_percent` e consistência de segmento. As evidências das revisões estão em `evidencias/`, incluindo os arquivos 35, 36 e 37 relativos à refatoração dbt. Após a execução do procedimento de documentação, também devem existir as evidências 40 e 41.
+O projeto inclui testes `not_null`, `accepted_values`, `unique` e testes singulares de cardinalidade, granularidade, coerência Glassdoor, faixa de `match_percent` e consistência de segmento. As evidências das revisões estão em `evidencias/`, incluindo os arquivos 35, 36 e 37 relativos à refatoração dbt, além das evidências 40 e 41 da documentação dbt.
 
 ## Apresentação
 
