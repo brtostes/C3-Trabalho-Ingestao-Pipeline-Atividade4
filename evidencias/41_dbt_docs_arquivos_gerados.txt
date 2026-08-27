@@ -1,0 +1,20 @@
+ATIVIDADE 4 - EVIDENCIA DOS ARTEFATOS DBT DOCS
+Data da execucao observada: 27/08/2026
+
+A execucao de dbt docs generate concluiu com sucesso e gerou a documentacao navegavel do projeto em dbt/target/.
+
+Arquivos centrais confirmados pela execucao:
+- index.html
+- manifest.json
+- catalog.json
+
+Validacao do servidor local:
+- GET / -> HTTP 200
+- GET /manifest.json -> HTTP 200
+- GET /catalog.json -> HTTP 200
+
+O servidor foi iniciado em:
+http://localhost:8080
+
+Observacao:
+As requisicoes 404 registradas para caminhos contendo templates de icones nao impediram o carregamento da documentacao. O encerramento posterior com Ctrl+C gerou KeyboardInterrupt, comportamento esperado ao interromper manualmente o dbt docs serve.
