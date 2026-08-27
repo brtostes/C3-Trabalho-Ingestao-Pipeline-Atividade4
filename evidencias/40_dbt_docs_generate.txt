@@ -1,27 +1,13 @@
-ATIVIDADE 4 - EVIDENCIA DE GERACAO DO DBT DOCS
-Data da execucao observada: 27/08/2026
-
-Comando executado pelo script:
-docker compose run --rm dbt dbt docs generate
-
-Resultado observado:
-- dbt Core: 1.12.3
-- adapter postgres: 1.11.0
-- 10 models
-- 29 data tests
-- 10 sources
-- 479 macros
-- target: dev
-- catalogo construido com sucesso
-- catalog.json gravado em /usr/app/target/catalog.json
-
-Trecho relevante da execucao:
-00:51:45  Running with dbt=1.12.3
-00:51:46  Registered adapter: postgres=1.11.0
-00:51:46  Found 10 models, 29 data tests, 10 sources, 479 macros
-00:51:46  Concurrency: 4 threads (target='dev')
-00:51:47  Building catalog
-00:51:48  Catalog written to /usr/app/target/catalog.json
-
-Conclusao:
-O comando dbt docs generate foi concluido com sucesso e produziu o catalogo necessario para a documentacao navegavel do projeto.
+ Container trabalho04-postgres Running 
+ Container trabalho04-postgres Waiting 
+ Container trabalho04-postgres Healthy 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-83fc28edd94b Creating 
+ Container c3-trabalho-ingestao-pipeline-atividade4-main-dbt-run-83fc28edd94b Created 
+[0m00:51:45  Running with dbt=1.12.3
+[0m00:51:46  Registered adapter: postgres=1.11.0
+[0m00:51:46  Found 10 models, 29 data tests, 10 sources, 479 macros
+[0m00:51:46  
+[0m00:51:46  Concurrency: 4 threads (target='dev')
+[0m00:51:46  
+[0m00:51:47  Building catalog
+[0m00:51:48  Catalog written to /usr/app/target/catalog.json
